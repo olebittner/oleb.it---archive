@@ -32,7 +32,7 @@ export default class CommandHandler {
                 let who = args.find((arg:string) => /^[^-]*$/.test(arg))
                 if (who !== undefined) {
                     let file = who.replace(' ', '').toLowerCase()
-                    this.cmdHndlr.openFile(`/data/whois/${file}.html`, `'${who}' is unknown!`)
+                    this.cmdHndlr.openFile(`/cmd_data/whois/${file}.html`, `'${who}' is unknown!`)
                 } else {
                     this.cmdHndlr.console.println('Usage: ' + this.name)
                 }
