@@ -1,6 +1,6 @@
 <template>
     <div class="console" @click.once="focusConsoleInput">
-        <div class="cmd-history" v-html="cmd"></div>
+        <div class="cmd-history" v-html="cmd" v-on:click=""></div>
         <ConsoleInput v-if="showInput" ref="consoleInput" v-bind:prompt="prompt"
                       v-bind:history="history" v-on:send-cmd="handleCmd"></ConsoleInput>
     </div>
@@ -22,6 +22,7 @@
         cmd: string = '';
         delay: number = 50;
         speed: number = 3;
+        speedMultiplier: number = 65;
         prompt: string =
             '<span class="a"><span class="b">anonymous@oleb.it</span> <span class="c">~</span>$&nbsp;</span>';
         history: string[] = [];
@@ -33,14 +34,17 @@
             }
         }
 
-        printToConsole(text:string, callback?:() => void):void {
+        printToConsole(text:string, callback?:() => void, speed:number=-1):void {
             if (this.showInput) {
                 this.showInput = false;
             }
-            this.cmd += text.substr(0, this.speed);
+            if (speed <= 0) {
+                speed = this.speed + Math.floor(this.speed * (text.length / this.speedMultiplier))
+            }
+            this.cmd += text.substr(0, speed);
             window.scroll(0,50);
-            if (text.length > this.speed) {
-                setTimeout(() => this.printToConsole(text.substr(this.speed), callback), this.delay);
+            if (text.length > speed) {
+                setTimeout(() => this.printToConsole(text.substr(speed), callback, speed), this.delay);
             } else {
                 if (callback !== undefined)
                     callback();
@@ -114,5 +118,31 @@
     }
     .error {
         color: red;
+    }
+
+    .indent {
+        margin-left: 40px;
+    }
+
+    h1, h2{
+        color: #ff5f5f;
+        font-size: 14px;
+        margin: 0;
+        padding: 0;
+        font-weight: normal;
+    }
+
+    h1 {
+        text-transform: uppercase;
+        #text-decoration: underline;
+    }
+
+    h2 {
+        margin-left: 20px;
+    }
+
+    p {
+        margin-top: 0;
+        padding-top: 0;
     }
 </style>

@@ -9,6 +9,10 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
+      path: '/imprint',
+      redirect: '/cat/imprint_final_2_newfinal_final_version.txt'
+    },
+    {
       path: '/:cmd',
       name: 'Console',
       component: Console

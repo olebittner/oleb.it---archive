@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <router-view/>
+    <router-link class="console imprint" to="/imprint">./imprint && ./privacy</router-link>
   </div>
 </template>
 
@@ -19,5 +20,16 @@ html, body {
   margin: 0;
   padding: 0;
 }
+</style>
 
+<style scoped>
+  .imprint {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    color: #404040;
+    width: auto;
+    margin-bottom: 10px;
+    margin-right: 10px;
+  }
 </style>

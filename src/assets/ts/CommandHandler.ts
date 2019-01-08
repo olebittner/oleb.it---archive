@@ -29,10 +29,26 @@ export default class CommandHandler {
             cmdHndlr: this,
 
             exec(args: string[]): void {
-                let who = args.find((arg:string) => /^[^-]*$/.test(arg))
+                let who = args.find((arg:string) => /^[^-]*$/.test(arg));
                 if (who !== undefined) {
-                    let file = who.replace(' ', '').toLowerCase()
+                    let file = who.replace(' ', '').toLowerCase();
                     this.cmdHndlr.openFile(`/cmd_data/whois/${file}.html`, `'${who}' is unknown!`)
+                } else {
+                    this.cmdHndlr.console.println('Usage: ' + this.name)
+                }
+
+            }
+        },
+        {
+            name: 'cat',
+            alias: [],
+            cmdHndlr: this,
+
+            exec(args: string[]): void {
+                let file = args.find((arg:string) => /^[^-]*$/.test(arg));
+                if (file !== undefined) {
+                    let path = file.replace(' ', '').toLowerCase();
+                    this.cmdHndlr.openFile(`/cmd_data/cat/${path}.html`, `cat: ${file}: No such file or directory`)
                 } else {
                     this.cmdHndlr.console.println('Usage: ' + this.name)
                 }
