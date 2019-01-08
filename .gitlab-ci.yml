@@ -7,6 +7,8 @@ build:
 
   only:
     - master
+    - merge_requests
+    - triggers
 
   script:
     - npm install
@@ -15,6 +17,7 @@ build:
   artifacts:
     paths:
       - ./dist/
+    expire_in: '6h'
 
 
 deploy:
@@ -22,6 +25,11 @@ deploy:
 
   only:
     - master
+    - triggers
+
+  environment:
+    name: production
+    url: https://oleb.it/
 
   variables:
     dir_root: /var/www/
