@@ -96,7 +96,7 @@ export default class CommandHandler {
     }
 
     protected openFile(path:string, error:string) {
-        this.axios.get(path).then((resp:any) => self.console.log(resp))
+        this.axios.get(path).then((resp:any) => this.console.println(resp.data))
             .catch((resp:any) => this.console.println(error))
     }
 
