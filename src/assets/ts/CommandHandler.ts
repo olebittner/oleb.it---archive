@@ -38,6 +38,18 @@ export default class CommandHandler {
                 }
 
             }
+        },
+        {
+            name: 'exit',
+            alias: ['shutdown', 'logout'],
+            cmdHndlr: this,
+
+            exec(args: string[]): void {
+                this.cmdHndlr.console.println('<span>Bye Bye<!--<><><><><><><><><><><><><><><><><><><><><><><><><><><>--></span>',function () {
+                    window.close();
+                    window.location.href ='about:blank';
+                });
+            }
         }
     ];
 
