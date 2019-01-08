@@ -116,6 +116,16 @@ export default class CommandHandler {
                     return;
                 }
             }
+        },
+        {
+            name: 'reset',
+            alias: ['restart', 'reboot'],
+            description: 'reset this session',
+            cmdHndlr: this,
+
+            exec(args: string[]): void {
+                window.location.href ='/';
+            }
         }
     ];
 
