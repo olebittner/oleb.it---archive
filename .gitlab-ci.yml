@@ -30,4 +30,5 @@ deploy:
   script:
     - "target=$dir_root$webspace"
     - "echo \"Deploying to: $target\""
-    - "rsync -rlvc --delete --chown gitlab-runner:www-data ./dist/ $target"
+    - "rsync -rlvc --delete ./dist/ $target"
+    - "chgrp -hR www-data $target"
