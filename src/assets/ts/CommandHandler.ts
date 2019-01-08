@@ -16,6 +16,7 @@ export default class CommandHandler {
         {
             name: 'echo',
             alias: [],
+            description: 'display a line of text',
             cmdHndlr: this,
 
             exec(args: string[]):void {
@@ -26,6 +27,7 @@ export default class CommandHandler {
         {
             name: 'whois',
             alias: [],
+            description: 'look up information about selected individuals',
             cmdHndlr: this,
 
             exec(args: string[]): void {
@@ -58,6 +60,7 @@ export default class CommandHandler {
         {
             name: 'exit',
             alias: ['shutdown', 'logout'],
+            description: 'cause normal process termination of the current session',
             cmdHndlr: this,
 
             exec(args: string[]): void {
@@ -70,6 +73,7 @@ export default class CommandHandler {
         {
             name: 'clear',
             alias: ['cls'],
+            description: 'clear the terminal screen',
             cmdHndlr: this,
 
             exec(args: string[]): void {
@@ -79,10 +83,38 @@ export default class CommandHandler {
         {
             name: 'version',
             alias: [],
+            description: 'print out version information about oleb.it',
             cmdHndlr: this,
 
             exec(args: string[]): void {
                 this.cmdHndlr.openFile('/cmd_data/version.html', 'version data is corrupted')
+            }
+        },
+        {
+            name: 'help',
+            alias: ['man'],
+            description: 'print out this page',
+            cmdHndlr: this,
+
+            exec(args: string[]): void {
+                if (args.length > 0 && false){
+                    //TODO Add per cmd help
+                } else {
+                    let helpString:string[] = [];
+                    for (let cmd of this.cmdHndlr.commands){
+                        if (cmd.description !== undefined && cmd.description.length > 0){
+                            helpString.push(` - <b>${cmd.name}</b> - ${cmd.description}`)
+                        }
+                    }
+                    let output:string;
+                    if (helpString.length > 0){
+                        output = helpString.sort().join('<br>');
+                    } else {
+                        output = 'Sorry, looks like help is currently out of stock';
+                    }
+                    this.cmdHndlr.console.println(`<span>${output}</span>`);
+                    return;
+                }
             }
         }
     ];
