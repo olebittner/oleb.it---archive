@@ -15,7 +15,7 @@ build:
     - npm run build
     - "echo \"<span>This is Build
         <a href=\\\"$CI_REPOSITORY_URL/commit/$CI_COMMIT_SHA\\\" target=\\\"_blank\\\">
-        <b>${$CI_COMMIT_SHA:0:8}</b>: $CI_COMMIT_TITLE</a>\" > ./dist/cmd_data/version.html"
+        <b>${CI_COMMIT_SHA:0:8}</b>: $CI_COMMIT_TITLE</a>\" > ./dist/cmd_data/version.html"
 
   artifacts:
     paths:
