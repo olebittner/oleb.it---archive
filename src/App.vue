@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <router-view/>
-    <router-link class="console imprint" to="/imprint">./imprint && ./privacy</router-link>
+    <a class="console imprint" href="/imprint">./imprint && ./privacy</a>
   </div>
 </template>
 
