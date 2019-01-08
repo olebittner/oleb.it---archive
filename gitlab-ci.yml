@@ -1,0 +1,33 @@
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+
+  only:
+    - master
+
+  script:
+    - npm install
+    - npm run build
+
+  artifacts:
+    paths:
+      - ./dist/
+
+
+deploy:
+  stage: deploy
+
+  only:
+    - master
+
+  variables:
+    dir_root: /var/www/
+    webspace: olebit/
+
+  script:
+    - "target=$dir_root$webspace"
+    - "echo \"Deploying to: $target\""
+    - "rsync -rlvc --delete --chown gitlab-runner:www-data ./dist/ $target"
