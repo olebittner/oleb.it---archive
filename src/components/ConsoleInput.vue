@@ -34,7 +34,10 @@
             }
             if (input !== null && input.length > 0) {
                 let argURI = encodeURI(args);
-                this.$router.push({name: 'ConsoleWithArgs', params: {cmd: cmd, args: argURI}});
+                if (argURI.length > 0)
+                    this.$router.push({name: 'ConsoleWithArgs', params: {cmd: cmd, args: argURI}});
+                else
+                    this.$router.push({name: 'Console', params: {cmd: cmd}});
                 this.sendCmd(cmd, args, !inputStartsWithSpace);
                 this.input = '';
                 this.historyIndex = 0;

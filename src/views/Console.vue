@@ -2,7 +2,7 @@
     <div class="console" @click.once="focusConsoleInput">
         <div class="cmd-history" v-html="cmd"></div>
         <ConsoleInput v-if="showInput" ref="consoleInput" v-bind:prompt="prompt"
-                      v-bind:history="history" v-on:cmd-send="handleCmd"></ConsoleInput>
+                      v-bind:history="history" v-on:send-cmd="handleCmd"></ConsoleInput>
     </div>
 </template>
 
