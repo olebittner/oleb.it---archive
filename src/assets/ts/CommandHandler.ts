@@ -66,6 +66,15 @@ export default class CommandHandler {
                     window.location.href ='about:blank';
                 });
             }
+        },
+        {
+            name: 'clear',
+            alias: ['cls'],
+            cmdHndlr: this,
+
+            exec(args: string[]): void {
+                this.cmdHndlr.console.clearCmd();
+            }
         }
     ];
 
