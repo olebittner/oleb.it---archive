@@ -25,9 +25,9 @@ deploy:
 
   variables:
     dir_root: /var/www/
-    webspace: oleb/
+    webspace: oleb/vue/
 
   script:
     - "target=$dir_root$webspace"
     - "echo \"Deploying to: $target\""
-    - "rsync -rlvc --delete --chown gitlab-runner:www-data ./dist/ $target"
+    - "rsync -rlvc --chown gitlab-runner:www-data ./dist/ $target"
