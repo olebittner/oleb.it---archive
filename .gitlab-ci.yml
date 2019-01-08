@@ -9,7 +9,7 @@ build:
     - master
 
   script:
-    - npm install
+    - npm install --verbose
     - npm run build
 
   artifacts:
@@ -25,7 +25,7 @@ deploy:
 
   variables:
     dir_root: /var/www/
-    webspace: olebit/
+    webspace: oleb/
 
   script:
     - "target=$dir_root$webspace"
