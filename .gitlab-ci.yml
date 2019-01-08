@@ -13,6 +13,9 @@ build:
   script:
     - npm install
     - npm run build
+    - "echo '<span>This is Build
+        <a href=\"https://git.oleb.it/obittner/oleb.it/commit/$CI_COMMIT_SHA\" target=\"_blank\">
+        <b>$CI_COMMIT_SHORT_SHA</b>: $CI_COMMIT_TITLE</a>' > ./dist/cmd_data/version.html"
 
   artifacts:
     paths:
@@ -39,4 +42,5 @@ deploy:
     - "target=$dir_root$webspace"
     - "echo \"Deploying to: $target\""
     - "rsync -rlvc --delete ./dist/ $target"
+    - "echo '<br>This Version was deployed <b>$(date '+%Y %b %d %H:%M')</b></span>' >> $target/cmd_data/version.html"
     - "chgrp -hR www-data $target/*"

@@ -75,6 +75,15 @@ export default class CommandHandler {
             exec(args: string[]): void {
                 this.cmdHndlr.console.clearCmd();
             }
+        },
+        {
+            name: 'version',
+            alias: [],
+            cmdHndlr: this,
+
+            exec(args: string[]): void {
+                this.cmdHndlr.openFile('/cmd_data/version.html', 'version data is corrupted')
+            }
         }
     ];
 
