@@ -22,6 +22,22 @@ export default class CommandHandler {
                 let output = args.join(' ');
                 this.cmdHndlr.console.println(output);
             }
+        },
+        {
+            name: 'whois',
+            alias: [],
+            cmdHndlr: this,
+
+            exec(args: string[]): void {
+                let who = args.find((arg:string) => /^[^-]*$/.test(arg))
+                if (who !== undefined) {
+                    let file = who.replace(' ', '').toLowerCase()
+                    this.cmdHndlr.openFile(`/data/whois/${file}.html`, `'${who}' is unknown!`)
+                } else {
+                    this.cmdHndlr.console.println('Usage: ' + this.name)
+                }
+
+            }
         }
     ];
 
@@ -50,5 +66,11 @@ export default class CommandHandler {
         }
         this.console.println(`<span>Command '${cmd}' not found</span><br>`)
     }
+
+    protected openFile(path:string, error:string) {
+        this.axios.get(path).then((resp:any) => this.console.println(resp.data))
+            .catch((resp:any) => this.console.println(error))
+    }
+
 
 }

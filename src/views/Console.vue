@@ -10,6 +10,7 @@
     import { Component, Vue } from 'vue-property-decorator';
     import CommandHandler from "@/assets/ts/CommandHandler";
     import ConsoleInput from "@/components/ConsoleInput.vue";
+    import axios from 'axios';
 
     @Component({
         components: {
@@ -73,7 +74,7 @@
         }
 
         created() {
-            this.cmdHandler = new CommandHandler(this.axios, this);
+            this.cmdHandler = new CommandHandler(axios, this);
         }
 
         mounted() {
