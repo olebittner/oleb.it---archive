@@ -31,4 +31,4 @@ deploy:
     - "target=$dir_root$webspace"
     - "echo \"Deploying to: $target\""
     - "rsync -rlvc --delete ./dist/ $target"
-    - "chgrp -hR www-data $target"
+    - "chgrp -hR www-data $target/*"
