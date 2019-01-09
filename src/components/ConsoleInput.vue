@@ -53,7 +53,7 @@
         sendCmd(cmd:string, args:string, appendToHistory:boolean = true) {}
 
         mounted() {
-            this.cmdInput = <HTMLInputElement>this.$refs.cmdInput;
+            this.cmdInput = this.$refs.cmdInput as HTMLInputElement;
 
             window.addEventListener('keyup', (event) => {
                 if (event.keyCode !== 17 && event.keyCode !== 18) {

@@ -14,7 +14,7 @@
 
     @Component({
         components: {
-            ConsoleInput,
+            ConsoleInput
         },
     })
     export default class Console extends Vue{
@@ -30,7 +30,7 @@
 
         focusConsoleInput(){
             if (this.showInput) {
-                (<ConsoleInput>this.$refs.consoleInput).gainFocus();
+                (this.$refs.consoleInput as ConsoleInput).gainFocus();
             }
         }
 

@@ -155,8 +155,8 @@ export default class CommandHandler {
         this.console.println(`<span>Command '${cmd}' not found</span><br>`)
     }
 
-    protected openFile(path:string, error:string) {
-        this.axios.get(path).then((resp:any) => this.console.println(resp.data))
+    protected async openFile(path:string, error:string) {
+        await this.axios.get(path).then((resp:any) => this.console.println(resp.data))
             .catch((resp:any) => this.console.println(error))
     }
 
