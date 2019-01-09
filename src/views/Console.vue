@@ -100,6 +100,12 @@
         margin-right: auto;
         padding-top: 25px;
     }
+
+    @media only screen and (max-width: 768px) {
+        .console {
+            width: 90%;
+        }
+    }
 </style>
 
 <style>
