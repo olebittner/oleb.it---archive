@@ -31,7 +31,7 @@ build:
     expire_in: '6h'
 
 
-unit_test:
+unit tests:
   stage: test
   image: node:latest
   tags: 
@@ -48,7 +48,11 @@ unit_test:
 
   script:
     - npm install
-    - npm run test --color
+    - npm run test --reporters=jest-junit
+
+  artifacts:
+    reports:
+      junit: junit.xml
 
 
 deploy:

@@ -15,13 +15,17 @@ module.exports = {
     '^@/(.*)$': "<rootDir>/src/$1"
   },
   // serializer for snapshots
-  "snapshotSerializers": [
+  snapshotSerializers: [
     "jest-serializer-vue"
   ],
-  "testMatch": [
+  testMatch: [
     "<rootDir>tests/unit/**"
   ],
-  "transformIgnorePatterns": [
+  transformIgnorePatterns: [
     "node_modules"
+  ],
+  reporters: [
+      "default",
+      "jest-junit"
   ]
 };
