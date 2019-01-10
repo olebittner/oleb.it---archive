@@ -1,4 +1,4 @@
-interface ICommand {
+export interface ICommand {
     readonly name: string;
     readonly alias: string[];
     readonly description?: string;
