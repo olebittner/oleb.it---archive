@@ -4,8 +4,10 @@ stages:
   - deploy
 
 build:
-  image: node:latest
   stage: build
+  image: node:latest
+  tags: 
+    - docker
 
   only:
     - branches
@@ -30,8 +32,10 @@ build:
 
 
 unit_test:
-  image: node:latest
   stage: test
+  image: node:latest
+  tags: 
+    - docker
 
   only:
     - branches
@@ -44,13 +48,13 @@ unit_test:
 
   script:
     - npm install
-    - npm run test
+    - npm run test --color
 
 
 deploy:
-  tags:
-    - shell
   stage: deploy
+  tags:
+    - host
 
   only:
     - master
