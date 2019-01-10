@@ -10,9 +10,11 @@ build:
     - docker
 
   only:
-    - branches
+    - master
     - merge_requests
     - triggers
+    - web
+    - schedules
 
   cache:
     paths:
@@ -38,9 +40,11 @@ unit tests:
     - docker
 
   only:
-    - branches
+    - master
     - merge_requests
     - triggers
+    - web
+    - schedules
 
   cache:
     paths:
