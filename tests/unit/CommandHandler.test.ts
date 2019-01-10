@@ -2,7 +2,7 @@ import 'jest'
 import {shallowMount, createLocalVue} from '@vue/test-utils'
 import VueRouter from 'vue-router'
 import axios from 'axios'
-import CommandHanlder from '@/assets/ts/CommandHandler'
+import CommandHandler from '@/assets/ts/CommandHandler'
 import Console from '@/views/Console.vue'
 
 const localVue = createLocalVue();
@@ -17,10 +17,10 @@ describe("CommandHandler testing", () => {
     const wrapper = shallowMount(Console, {localVue, router});
     const printlnMock = jest.fn();
     (wrapper.vm as any).println = printlnMock;
-    let cmdHandler:CommandHanlder;
+    let cmdHandler:CommandHandler;
 
     beforeEach(() => {
-       cmdHandler = new CommandHanlder(axios, wrapper.vm);
+       cmdHandler = new CommandHandler(axios, wrapper.vm);
        printlnMock.mockClear();
     });
 

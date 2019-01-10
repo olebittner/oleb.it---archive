@@ -1,5 +1,4 @@
 module.exports = {
-  preset: 'ts-jest',
   moduleFileExtensions: [
     "js",
     "json",
@@ -18,5 +17,11 @@ module.exports = {
   // serializer for snapshots
   "snapshotSerializers": [
     "jest-serializer-vue"
+  ],
+  "testMatch": [
+    "<rootDir>tests/unit/**"
+  ],
+  "transformIgnorePatterns": [
+    "node_modules"
   ]
 };

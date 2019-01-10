@@ -1,14 +1,20 @@
 stages:
   - build
+  - test
   - deploy
 
 build:
+  image: node:latest
   stage: build
 
   only:
-    - master
+    - branches
     - merge_requests
     - triggers
+
+  cache:
+    paths:
+      - node_modules/
 
   script:
     - npm install
@@ -23,7 +29,27 @@ build:
     expire_in: '6h'
 
 
+unit_test:
+  image: node:latest
+  stage: test
+
+  only:
+    - branches
+    - merge_requests
+    - triggers
+
+  cache:
+    paths:
+      - node_modules/
+
+  script:
+    - npm install
+    - npm run test
+
+
 deploy:
+  tags:
+    - shell
   stage: deploy
 
   only:
