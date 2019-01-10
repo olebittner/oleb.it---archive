@@ -112,7 +112,3 @@ describe("CommandHandler testing", () => {
         });
     })
 });
-
-test("failing test", () => {
-    expect(false).toBeTruthy();
-});
