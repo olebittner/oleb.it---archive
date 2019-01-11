@@ -135,24 +135,26 @@ export default class CommandHandler {
     }
 
     public exec(cmd:string, argString:string):void {
-        for (let command of this.commands) {
-            if (command.name === cmd || command.alias.indexOf(cmd) > -1){
-                let args:string[] = [];
-                let regex = /(?:([^\s"']+)|(?:["]([^"]*)["]|[']([^']*)[']))+/g;
-                let match;
-                while ((match = regex.exec(argString)) !== null) {
-                    match.shift();
-                    for (let arg of match) {
-                        if (arg !== undefined) {
-                            args.push(arg);
+        if (cmd !== undefined) {
+            for (let command of this.commands) {
+                if (command.name === cmd.toLowerCase() || command.alias.indexOf(cmd.toLowerCase()) > -1) {
+                    let args: string[] = [];
+                    let regex = /(?:([^\s"']+)|(?:["]([^"]*)["]|[']([^']*)[']))+/g;
+                    let match;
+                    while ((match = regex.exec(argString)) !== null) {
+                        match.shift();
+                        for (let arg of match) {
+                            if (arg !== undefined) {
+                                args.push(arg);
+                            }
                         }
                     }
+                    command.exec(args);
+                    return;
                 }
-                command.exec(args);
-                return;
             }
+            this.console.println(`<span>Command '${cmd}' not found</span><br>`)
         }
-        this.console.println(`<span>Command '${cmd}' not found</span><br>`)
     }
 
     protected async openFile(path:string, error:string) {
