@@ -5,6 +5,8 @@ import axios from 'axios'
 import {ICommand} from "@/assets/ts/CommandHandler";
 import CommandHandler from '@/assets/ts/CommandHandler'
 import Console from '@/views/Console.vue'
+import anything = jasmine.anything;
+
 
 const localVue = createLocalVue();
 localVue.use(VueRouter);
@@ -72,6 +74,48 @@ describe("Command testing", () => {
             let args = ['first', 'second', 'third', 'fourth', 'fifth'];
             echo.exec(args);
             expect(printlnMock).toBeCalledWith(args.join(' '));
+        });
+    });
+
+    describe("whois command", () => {
+        let cmd:ICommand;
+
+        beforeEach(() => {
+            // @ts-ignore
+            cmd = getCommand('whois');
+        });
+
+        test("whois command is defined", () => {
+            expect(cmd).toBeDefined();
+        });
+
+        test("whois has CommandHandler", () => {
+            expect(cmd.cmdHndlr).toEqual(cmdHandler);
+        });
+
+        test("whois has name and alias", () => {
+            expect(cmd.name).toBeDefined();
+            expect(cmd.name.length).toBeGreaterThan(0);
+
+            expect(cmd.alias).toBeDefined();
+        });
+
+        test("whois cmd without args", () => {
+            cmd.exec([]);
+            expect(printlnMock).toBeCalled();
+        });
+
+        test("whois cmd with one arg", () => {
+            let arg = 'first';
+            cmd.exec([arg]);
+            expect(openFileMock).toBeCalledWith(`/cmd_data/whois/${arg}.html`, anything());
+        });
+
+        test("whois cmd with three arg", () => {
+            let arg = 'second';
+            let args = ['--first', 'second', 'third', 'fourth', 'fifth'];
+            cmd.exec(args);
+            expect(openFileMock).toBeCalledWith(`/cmd_data/whois/${arg}.html`, anything());
         });
     });
 });
