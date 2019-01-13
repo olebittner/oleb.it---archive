@@ -126,6 +126,25 @@ export default class CommandHandler {
             exec(args: string[]): void {
                 window.location.href ='/';
             }
+        },
+        {
+            name: 'mail',
+            alias: ['sendmail'],
+            description: 'send Internet mail',
+            cmdHndlr: this,
+
+            exec(args: string[]): void {
+                let lnk:string = "mailto:";
+                if (args.length > 0)
+                    lnk += args[0];
+                else
+                    lnk += "contact@oleb.it";
+                if (args.length > 1)
+                    lnk += `?subject=${encodeURI(args[1])}`;
+                if (args.length > 2)
+                    lnk += `&body=${encodeURI(args[2])}`;
+                self.window.location.href = lnk;
+            }
         }
     ];
 
