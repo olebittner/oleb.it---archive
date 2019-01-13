@@ -172,7 +172,7 @@ export default class CommandHandler {
                     return;
                 }
             }
-            this.console.println(`<span>Command '${cmd}' not found</span><br>`)
+            this.console.println(`<span>Command '${cmd}' not found</span>`)
         }
     }
 
