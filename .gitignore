@@ -23,3 +23,4 @@ yarn-error.log*
 # logs and reports
 junit.xml
 /false
+/coverage
