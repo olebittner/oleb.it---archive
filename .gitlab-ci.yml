@@ -52,7 +52,7 @@ unit tests:
 
   script:
     - npm install
-    - npm run test --reporters=jest-junit
+    - npm run test -- --coverage
 
   artifacts:
     reports:
